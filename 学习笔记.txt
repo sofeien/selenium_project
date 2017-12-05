@@ -1,0 +1,164 @@
+导入模块
+from selenium import webdriver
+创建远程浏览器
+browser = webdriver.Firefox()
+浏览网页
+browser.get('http://www.baidu.com/')
+导入按键模块
+from selenium.webdriver.common.keys import Keys
+断言判断结果是否正确
+assert '百度' in browser.title
+标题
+browser.title
+通过name值定位元素
+elem = browser.find_element_by_name('wd)
+清除输入框内容
+elem.clear()
+向输入框发送字符串和模拟按钮
+elem.send_keys('selenium' + Keys.RETURN)
+关闭浏览器
+browser.quit()
+
+XPATH
+如果开头是/ 表示绝对路径
+如果开头是// 表示相对路径
+* 代表匹配任何元素\属性,只能匹配当层的节点
+选择第一个元素 [1]
+选择最后一个元素 [last()]
+选择包含特定子元素的元素 [子元素]
+选择子元素特定值的元素 [子元素1=值 and 子元素2=值]
+选择多个路径,使用 |
+选择属性 @属性名
+选择包含特定属性的元素 [@属性名]
+选择包含特定属性值的元素 [@属性名=值]
+
+CSS SELECTOR
+.class  通过类型定位
+#id  通过id定位
+*  匹配所有元素
+tag-name  通过tag name 定位
+element>element  通过父子层级关系定位
+element+element  通过同胞关系定位
+[attr=value]  通过属性定位
+
+模拟时间间隔
+import time
+...
+time.sleep(3)  #停顿3秒
+生成指定范围的随机数
+import random
+random.uniform(x,y)  #生成[x,y)范围内的实数
+
+模拟点击
+elem.click() 
+ 
+导入模拟鼠标键盘操作
+from selenium.webdriver.common.action_chains import ActionChains
+
+执行js代码 
+browser.execute_script("js_code","")
+
+滚动网页的代码
+browser.execute_script("window.scrollBy(0,200)","")
+滚动到页面底部
+browser.execute_script("window.scrollBy(0,document.body.scrollHeight)","")
+
+移动鼠标的代码
+ActionChains(browser).move_by_offset(x,y).perform()
+
+点击鼠标的代码
+ActionChains(browser).click(特定元素).perform()
+
+模拟TAB键按下
+ActionChains(browser).key_down(Keys.TAB).perform()
+
+模拟ENTER键按下
+ActionChains(browser).send_keys(Keys.ENTER).perform()
+
+用类名定位元素
+browser.find_element_by_class_name("类名")
+
+导入os库
+import os
+遍历对应路径下的文件
+os.listdir(dir_path)
+判断对应路径下是否为文件
+os.path.isfile(file_path)
+判断文件类型(txt)
+文件名字符串.endswith(".txt")
+以特定编码打开文本
+open(file_path,'r',encoding="编码")
+字符串前后去除特定字符  目标字符串.strip(需要去除的字符串)
+
+调用系统浏览器
+import webbrowser
+webbrowser.open_new_tab(URL)
+
+调用cmd命令
+import os
+os.system("CMD命令")
+
+提交表单
+元素.submit()
+
+访问本地页面
+browser.navigate("file:///race_condition.html")
+通过tag定位元素
+browser.find_element_by_tag_name(标签)
+元素内文本
+elem.text
+
+内置等待包
+from selenium.webdriver.support.ui import WebDriverWait
+
+browser.navigate("file:///race_condition.html")
+el = WebDriverWait(browser,timeout=3).until(lambda d: return d.find_element_by_tag_name("p"))
+assert el.text == "Hello from JavaScript!"
+
+隐式等待
+browser.implicitly_wait(10)
+
+上述两个等待的区别:
+WebDriverWait    可以自定义等待完成的条件,执行到该语句时进行循环查询,超时判断
+implicitly_wait  是为每个定位元素的操作设置超时时间,是全局的超时设定
+
+JS定位元素
+1. 使用ID定位
+document.getElementById("domId")
+2. 使用name定位
+document.getElementsByName("domName")
+3. 使用tagname定位
+document.getElementsByTagName("tagName")
+4. 使用classname定位
+document.getElementsByClassName("className1 className2")
+5. 使用CSS选择器定位
+document.querySelectorAll("selector")
+
+try...except...else...finally  异常处理
+find_element_by_link_text()  通过链接文本定位元素
+find_element_by_partial_link_text()  通过部分链接文本定位元素
+find_element_by_xpath()  通过xpath定位元素
+find_element_by_css_selector()  通过css选择器定位元素
+
+使用By定位元素
+from selenium.webdriver.common.by import By
+find_element(By.ID,id)
+find_element(By.NAME,name)
+find_element(By.CLASS_NAME,classname)
+find_element(By.TAG_NAME,tagname)
+find_element(By.LINK_TEXT,text)
+find_element(By.PARTIAL_LINK_TEXT,text)
+find_element(By.XPATH,xpath)
+find_element(By.CSS_SELECTOR,cssselector)
+
+提取元素标签  e.tag_name
+提取元素属性  e.get_attribute("属性")
+提取输入框文本值  e.get_attribute("value")
+提取元素大小  e.size
+提取元素文本  e.text
+查询元素是否可见  e.is_displayed()
+
+控制浏览器窗口大小:  set_window_size(width,height)  maximize_window()
+控制浏览器前进后退:  back()  forward()
+控制浏览器刷新:  refresh()
+

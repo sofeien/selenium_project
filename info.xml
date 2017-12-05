@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<info>
+<base>
+	<platform>Windows</platform>
+	<browser>Firefox</browser>
+	<url>http://www.126.com</url>
+		<login username="zhangsan" password="123456" />
+		<login username="lisi" password="654321" />
+</base>
+<test>
+	<province>北京</province>
+	<province>湖北</province>
+		<city>武汉</city>
+		<city>鄂州</city>
+		<city>襄阳</city>
+	<province>浙江</province>
+		<city>杭州</city>
+</test>
+</info>
